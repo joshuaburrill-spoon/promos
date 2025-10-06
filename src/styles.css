@@ -1,18 +1,20 @@
 /* Theme colors */
 :root {
   --forest-green: #0a4d0a;
-  --cream: #FFFBEA;
+  --cream: #fbfbff;
   --white: #fff;
   --dark-grey: #222;
 }
 
-body, .app {
+body,
+.app {
   background: var(--cream);
   color: var(--dark-grey);
   min-height: 100vh;
   width: 100vw;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
 }
 
 .header-bar {
@@ -28,8 +30,6 @@ body, .app {
 }
 
 .main-section {
-  background: var(--cream);
-  padding: 3rem 2.5rem;
   max-width: 1000px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -75,7 +75,7 @@ h1 {
   width: 100%;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   padding: 2rem 2.5rem;
   margin-bottom: 2rem;
   color: var(--dark-grey);
@@ -132,15 +132,19 @@ h1 {
   width: 48px;
   height: 48px;
   border: 6px solid #0a4d0a;
-  border-top: 6px solid #FFFBEA;
+  border-top: 6px solid #fffbea;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 24px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-text {

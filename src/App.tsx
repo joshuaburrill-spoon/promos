@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GenerateBtn from "./GenerateBtn";
+import Layout from "./Layout";
 
 export default function App() {
   const [showPreview, setShowPreview] = useState(false);
@@ -309,72 +310,75 @@ export default function App() {
   };
 
   return (
-    <div className="app">
-      <div className="header-bar">Promotional content</div>
-      <main className="main-section">
-        {showLoading ? (
-          <div className="loading-container">
-            <div className="spinner" />
-            <div className="loading-text">thinking...</div>
-          </div>
-        ) : !showPreview ? (
-          <>
-            <h1>Create new promotion content</h1>
-            <p className="page-description">
-              Generate promotional content based on competitor's promotions in
-              your area
-            </p>
-            <GenerateBtn
-              onSuccess={(data) => {
-                console.log({ data });
-              }}
-            />
-          </>
-        ) : (
-          <div className="preview-content">
-            <div className="preview-footer">
-              <button className="send-btn">
-                send content
-                <span style={{ display: "inline-flex", alignItems: "center" }}>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+    <Layout>
+      <div className="app" style={{ backgroundColor: "#fbfbff" }}>
+        <main className="main-section" style={{ backgroundColor: "#fbfbff" }}>
+          {showLoading ? (
+            <div className="loading-container">
+              <div className="spinner" />
+              <div className="loading-text">thinking...</div>
+            </div>
+          ) : !showPreview ? (
+            <>
+              <h1>Create new promotion content</h1>
+              <p className="page-description">
+                Generate promotional content based on competitor's promotions in
+                your area
+              </p>
+              <GenerateBtn
+                onSuccess={(data) => {
+                  console.log({ data });
+                }}
+              />
+            </>
+          ) : (
+            <div className="preview-content">
+              <div className="preview-footer">
+                <button className="send-btn">
+                  send content
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
                   >
-                    <path
-                      d="M2 10L18 10"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M12 4L18 10L12 16"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </button>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2 10L18 10"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M12 4L18 10L12 16"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div className="preview-header">Preview email content</div>
+              <div
+                style={{
+                  overflow: "auto",
+                  background: "#f7f7f9",
+                  borderRadius: 12,
+                  padding: 16,
+                  marginBottom: 24,
+                }}
+              >
+                <div dangerouslySetInnerHTML={{ __html: temp }} />
+              </div>
             </div>
-            <div className="preview-header">Preview email content</div>
-            <div
-              style={{
-                overflow: "auto",
-                background: "#f7f7f9",
-                borderRadius: 12,
-                padding: 16,
-                marginBottom: 24,
-              }}
-            >
-              <div dangerouslySetInnerHTML={{ __html: temp }} />
-            </div>
-          </div>
-        )}
-      </main>
-    </div>
+          )}
+        </main>
+      </div>
+    </Layout>
   );
 }
