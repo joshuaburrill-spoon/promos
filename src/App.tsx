@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import GenerateBtn from "./GenerateBtn";
 
 export default function App() {
   const [showPreview, setShowPreview] = useState(false);
@@ -241,53 +242,62 @@ export default function App() {
 </html>`;
 
   const newTemp = {
-    "data": [
+    data: [
       {
-        "deal": {
-          "price": 129,
-          "title": "Combito Chicken Tender Sandwich",
-          "reason": "Lower price than a comparable KFC chicken sandwich combo and includes a 600ml drink for better value.",
-          "promoBadge": "Combo Deal",
-          "description": "Honey Mustard Chicken Tender Sandwich (2 chicken tenders) + French Fries + 600ml Coca‑Cola."
-        }
+        deal: {
+          price: 129,
+          title: "Combito Chicken Tender Sandwich",
+          reason:
+            "Lower price than a comparable KFC chicken sandwich combo and includes a 600ml drink for better value.",
+          promoBadge: "Combo Deal",
+          description:
+            "Honey Mustard Chicken Tender Sandwich (2 chicken tenders) + French Fries + 600ml Coca‑Cola.",
+        },
       },
       {
-        "deal": {
-          "price": 139,
-          "title": "Combo Famous Star Value",
-          "reason": "Budget-friendly burger combo with fries and a full 600ml drink, offering more value than a typical KFC burger/sandwich combo at a similar price.",
-          "promoBadge": "Value Combo",
-          "description": "Famous Star with Cheese + French Fries + 600ml Fanta."
-        }
+        deal: {
+          price: 139,
+          title: "Combo Famous Star Value",
+          reason:
+            "Budget-friendly burger combo with fries and a full 600ml drink, offering more value than a typical KFC burger/sandwich combo at a similar price.",
+          promoBadge: "Value Combo",
+          description: "Famous Star with Cheese + French Fries + 600ml Fanta.",
+        },
       },
       {
-        "deal": {
-          "price": 169,
-          "title": "Combito 3 Chicken Tenders",
-          "reason": "Includes 3 hand-breaded tenders plus fries and a 600ml drink, giving a better per-piece price and larger drink than many KFC tender combos.",
-          "promoBadge": "Tenders Combo",
-          "description": "3 Hand-Breaded Chicken Tenders + French Fries + 600ml Coca‑Cola Light."
-        }
+        deal: {
+          price: 169,
+          title: "Combito 3 Chicken Tenders",
+          reason:
+            "Includes 3 hand-breaded tenders plus fries and a 600ml drink, giving a better per-piece price and larger drink than many KFC tender combos.",
+          promoBadge: "Tenders Combo",
+          description:
+            "3 Hand-Breaded Chicken Tenders + French Fries + 600ml Coca‑Cola Light.",
+        },
       },
       {
-        "deal": {
-          "price": 159,
-          "title": "BOGO The Big Carl",
-          "reason": "Buy one, get one free—two premium burgers for the price of one, delivering far more sandwich value than a single comparable KFC item.",
-          "promoBadge": "BOGO",
-          "description": "Buy 1 The Big Carl and get another free (burgers only; fries and drinks not included)."
-        }
+        deal: {
+          price: 159,
+          title: "BOGO The Big Carl",
+          reason:
+            "Buy one, get one free—two premium burgers for the price of one, delivering far more sandwich value than a single comparable KFC item.",
+          promoBadge: "BOGO",
+          description:
+            "Buy 1 The Big Carl and get another free (burgers only; fries and drinks not included).",
+        },
       },
       {
-        "deal": {
-          "price": 259,
-          "title": "Duo Familiar de Pollo (Family Duo)",
-          "reason": "Feeds two with sandwiches, fries, and 600ml drinks each, at a lower per-person cost than purchasing two separate KFC combos.",
-          "promoBadge": "Meal for 2",
-          "description": "2 Classic Chicken Sandwiches + 2 French Fries + 2 Drinks (600ml each, choice available)."
-        }
-      }
-    ]
+        deal: {
+          price: 259,
+          title: "Duo Familiar de Pollo (Family Duo)",
+          reason:
+            "Feeds two with sandwiches, fries, and 600ml drinks each, at a lower per-person cost than purchasing two separate KFC combos.",
+          promoBadge: "Meal for 2",
+          description:
+            "2 Classic Chicken Sandwiches + 2 French Fries + 2 Drinks (600ml each, choice available).",
+        },
+      },
+    ],
   };
 
   const handleGenerateClick = () => {
@@ -311,27 +321,55 @@ export default function App() {
           <>
             <h1>Create new promotion content</h1>
             <p className="page-description">
-              Generate promotional content based on competitor's promotions in your area
+              Generate promotional content based on competitor's promotions in
+              your area
             </p>
-            <button className="generate-btn" onClick={handleGenerateClick}>
-              Generate content
-            </button>
+            <GenerateBtn
+              onSuccess={(data) => {
+                console.log({ data });
+              }}
+            />
           </>
         ) : (
           <div className="preview-content">
             <div className="preview-footer">
               <button className="send-btn">
                 send content
-                <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 10L18 10" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M12 4L18 10L12 16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <span style={{ display: "inline-flex", alignItems: "center" }}>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 10L18 10"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M12 4L18 10L12 16"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </span>
               </button>
             </div>
             <div className="preview-header">Preview email content</div>
-            <div style={{ overflow: 'auto', background: '#f7f7f9', borderRadius: 12, padding: 16, marginBottom: 24 }}>
+            <div
+              style={{
+                overflow: "auto",
+                background: "#f7f7f9",
+                borderRadius: 12,
+                padding: 16,
+                marginBottom: 24,
+              }}
+            >
               <div dangerouslySetInnerHTML={{ __html: temp }} />
             </div>
           </div>
