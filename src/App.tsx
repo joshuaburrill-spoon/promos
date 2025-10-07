@@ -7,6 +7,7 @@ export default function App() {
   const [showLoading, setShowLoading] = useState(false);
   const [emailContent, setEmailContent] = useState("");
   const [runId, setRunId] = useState<string | null>(null);
+  const [sentDeals, setSentDeals] = useState(false);
 
   const handleGenerateClick = () => {
     setShowLoading(true);
@@ -74,7 +75,7 @@ export default function App() {
       setEmailContent(html);
       setShowLoading(false);
       setShowPreview(true);
-    }, 3000);
+    }, 1000);
   };
 
   function buildEmailTemplateFromDeals(newTemp: any) {
@@ -226,6 +227,7 @@ export default function App() {
                         }),
                       }
                     );
+                    setSentDeals(true);
                     console.log(emailContent);
                   }}
                 >
@@ -257,19 +259,24 @@ export default function App() {
                   </span>
                 </button>
               </div>
-              <div className="preview-header">Preview email content</div>
-              <div
-                style={{
-                  border: "1px solid #ccc",
-                  padding: "1rem",
-                  background: "#fff",
-                  borderRadius: "8px",
-                  overflow: "auto",
-                  minHeight: "400px",
-                }}
-              >
-                <div dangerouslySetInnerHTML={{ __html: emailContent }} />
-              </div>
+              {sentDeals ? (
+                <div>
+                  <p>Deals sent!</p>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    border: "1px solid #ccc",
+                    padding: "1rem",
+                    background: "#fff",
+                    borderRadius: "8px",
+                    overflow: "auto",
+                    minHeight: "400px",
+                  }}
+                >
+                  <div dangerouslySetInnerHTML={{ __html: emailContent }} />
+                </div>
+              )}
             </div>
           )}
         </main>

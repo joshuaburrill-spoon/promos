@@ -55,7 +55,7 @@ export default function GenerateBtn({
         throw new Error("No runId returned from trigger endpoint");
       }
       // Use a 2 minutes 30 seconds timeout (150000 ms)
-      const DURATION = 105_000; // 1m 45s in ms
+      const DURATION = 110_000; // 1m 45s in ms
 
       // Start an interval to update progress so the bar fills incrementally
       const start = Date.now();
