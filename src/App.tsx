@@ -63,7 +63,7 @@ export default function App() {
       setEmailContent(html);
       setShowLoading(false);
       setShowPreview(true);
-    }, 3000);
+    }, 1000);
   };
 
   function buildEmailTemplateFromDeals(newTemp: any) {
@@ -175,8 +175,10 @@ export default function App() {
             </>
           ) : (
             <div className="preview-content">
-              <div className="preview-footer">
-                <button className="send-btn" onClick={() => { console.log(emailContent); }}>
+              <div className="preview-header">
+                <div>Preview email content</div>
+                <div>
+                  <button className="send-btn" onClick={() => { console.log(emailContent); }}>
                   send content
                   <span style={{ display: "inline-flex", alignItems: "center" }}>
                     <svg
@@ -202,8 +204,9 @@ export default function App() {
                     </svg>
                   </span>
                 </button>
+                </div>
+
               </div>
-              <div className="preview-header">Preview email content</div>
               <div style={{ border: '1px solid #ccc', padding: '1rem', background: '#fff', borderRadius: '8px', overflow: 'auto', minHeight: '400px' }}>
                 <div dangerouslySetInnerHTML={{ __html: emailContent }} />
               </div>
