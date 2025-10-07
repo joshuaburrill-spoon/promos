@@ -55,7 +55,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     padding: "0.5rem 0.5rem",
                     background: label === "Promotions" ? "#e8d5ea" : "none",
                     borderRadius: 6,
-                    margin: "1rem",
+                    margin: "0.75rem",
                   }}
                 >
                   <button
