@@ -159,7 +159,7 @@ export default function App() {
             </div>
           ) : !showPreview ? (
             <>
-              <h1>This is a header!</h1>
+              <h1>Generate a competitive campaign</h1>
               <p className="page-description">
                 Generate promotional content based on competitor's promotions in your area
               </p>
