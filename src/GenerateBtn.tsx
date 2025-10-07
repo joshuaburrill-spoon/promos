@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 export default function GenerateBtn({
   onSuccess,
 }: {
-  onSuccess: (data: any) => void;
+  onSuccess: (data: any, runId: string) => void;
 }) {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -83,7 +83,7 @@ export default function GenerateBtn({
             );
           }
           const json2 = await res2.json();
-          onSuccess(json2);
+          onSuccess(json2, runId);
         } catch (err) {
           // network/error handling — surface to console for now
           console.error("Error fetching webhook result:", err);

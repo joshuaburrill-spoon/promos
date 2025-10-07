@@ -5,59 +5,70 @@ import Layout from "./Layout";
 export default function App() {
   const [showPreview, setShowPreview] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
-  const [emailContent, setEmailContent] = useState('');
+  const [emailContent, setEmailContent] = useState("");
+  const [runId, setRunId] = useState<string | null>(null);
 
   const handleGenerateClick = () => {
     setShowLoading(true);
     setTimeout(() => {
       const newTemp = {
-        "data": [
+        data: [
           {
-            "deal": {
-              "price": 129,
-              "title": "Combito Chicken Tender Sandwich",
-              "reason": "Lower price than a comparable KFC chicken sandwich combo and includes a 600ml drink for better value.",
-              "promoBadge": "Combo Deal",
-              "description": "Honey Mustard Chicken Tender Sandwich (2 chicken tenders) + French Fries + 600ml Coca‑Cola."
-            }
+            deal: {
+              price: 129,
+              title: "Combito Chicken Tender Sandwich",
+              reason:
+                "Lower price than a comparable KFC chicken sandwich combo and includes a 600ml drink for better value.",
+              promoBadge: "Combo Deal",
+              description:
+                "Honey Mustard Chicken Tender Sandwich (2 chicken tenders) + French Fries + 600ml Coca‑Cola.",
+            },
           },
           {
-            "deal": {
-              "price": 139,
-              "title": "Combo Famous Star Value",
-              "reason": "Budget-friendly burger combo with fries and a full 600ml drink, offering more value than a typical KFC burger/sandwich combo at a similar price.",
-              "promoBadge": "Value Combo",
-              "description": "Famous Star with Cheese + French Fries + 600ml Fanta."
-            }
+            deal: {
+              price: 139,
+              title: "Combo Famous Star Value",
+              reason:
+                "Budget-friendly burger combo with fries and a full 600ml drink, offering more value than a typical KFC burger/sandwich combo at a similar price.",
+              promoBadge: "Value Combo",
+              description:
+                "Famous Star with Cheese + French Fries + 600ml Fanta.",
+            },
           },
           {
-            "deal": {
-              "price": 169,
-              "title": "Combito 3 Chicken Tenders",
-              "reason": "Includes 3 hand-breaded tenders plus fries and a 600ml drink, giving a better per-piece price and larger drink than many KFC tender combos.",
-              "promoBadge": "Tenders Combo",
-              "description": "3 Hand-Breaded Chicken Tenders + French Fries + 600ml Coca‑Cola Light."
-            }
+            deal: {
+              price: 169,
+              title: "Combito 3 Chicken Tenders",
+              reason:
+                "Includes 3 hand-breaded tenders plus fries and a 600ml drink, giving a better per-piece price and larger drink than many KFC tender combos.",
+              promoBadge: "Tenders Combo",
+              description:
+                "3 Hand-Breaded Chicken Tenders + French Fries + 600ml Coca‑Cola Light.",
+            },
           },
           {
-            "deal": {
-              "price": 159,
-              "title": "BOGO The Big Carl",
-              "reason": "Buy one, get one free—two premium burgers for the price of one, delivering far more sandwich value than a single comparable KFC item.",
-              "promoBadge": "BOGO",
-              "description": "Buy 1 The Big Carl and get another free (burgers only; fries and drinks not included)."
-            }
+            deal: {
+              price: 159,
+              title: "BOGO The Big Carl",
+              reason:
+                "Buy one, get one free—two premium burgers for the price of one, delivering far more sandwich value than a single comparable KFC item.",
+              promoBadge: "BOGO",
+              description:
+                "Buy 1 The Big Carl and get another free (burgers only; fries and drinks not included).",
+            },
           },
           {
-            "deal": {
-              "price": 259,
-              "title": "Duo Familiar de Pollo (Family Duo)",
-              "reason": "Feeds two with sandwiches, fries, and 600ml drinks each, at a lower per-person cost than purchasing two separate KFC combos.",
-              "promoBadge": "Meal for 2",
-              "description": "2 Classic Chicken Sandwiches + 2 French Fries + 2 Drinks (600ml each, choice available)."
-            }
-          }
-        ]
+            deal: {
+              price: 259,
+              title: "Duo Familiar de Pollo (Family Duo)",
+              reason:
+                "Feeds two with sandwiches, fries, and 600ml drinks each, at a lower per-person cost than purchasing two separate KFC combos.",
+              promoBadge: "Meal for 2",
+              description:
+                "2 Classic Chicken Sandwiches + 2 French Fries + 2 Drinks (600ml each, choice available).",
+            },
+          },
+        ],
       };
       const html = buildEmailTemplateFromDeals(newTemp);
       setEmailContent(html);
@@ -67,22 +78,23 @@ export default function App() {
   };
 
   function buildEmailTemplateFromDeals(newTemp: any) {
-    const bgColor = '#f6f7f9';
-    const cardBg = '#fffdfa';
-    const cardShadow = '0 6px 32px rgba(10,77,10,0.10)';
-    const headerColor = '#0a4d0a';
-    const badgeBg = '#0a4d0a';
-    const badgeColor = '#fff';
-    const priceColor = '#0a4d0a';
-    const descColor = '#333';
+    const bgColor = "#f6f7f9";
+    const cardBg = "#fffdfa";
+    const cardShadow = "0 6px 32px rgba(10,77,10,0.10)";
+    const headerColor = "#0a4d0a";
+    const badgeBg = "#0a4d0a";
+    const badgeColor = "#fff";
+    const priceColor = "#0a4d0a";
+    const descColor = "#333";
 
-    const dealsHtml = newTemp.data.map(({ deal }: any) => {
-      // Only show 'includes' if there are multiple ingredients (split by '+')
-      let includes = [];
-      if (deal.description && deal.description.includes('+')) {
-        includes = deal.description.split('+').map((i: any) => i.trim());
-      }
-      return `
+    const dealsHtml = newTemp.data
+      .map(({ deal }: any) => {
+        // Only show 'includes' if there are multiple ingredients (split by '+')
+        let includes = [];
+        if (deal.description && deal.description.includes("+")) {
+          includes = deal.description.split("+").map((i: any) => i.trim());
+        }
+        return `
         <tr>
           <td style="padding:0 0 32px 0;">
             <table width="100%" cellpadding="0" cellspacing="0" style="background:${cardBg};border-radius:18px;box-shadow:${cardShadow};margin:0 auto;">
@@ -91,30 +103,48 @@ export default function App() {
                   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
                     <div style="display:flex;align-items:center;gap:14px;">
                       <span style="font-size:22px;color:${headerColor};font-family:Arial,sans-serif;font-weight:700;line-height:1.2;">
-                        <span style="position:relative;cursor:help;" title="${deal.reason}">
+                        <span style="position:relative;cursor:help;" title="${
+                          deal.reason
+                        }">
                           ${deal.title}
                         </span>
-                        <span style="display:inline-block;background:${badgeBg};color:${badgeColor};font-size:14px;font-weight:600;padding:5px 14px;border-radius:10px;letter-spacing:1px;margin-left:12px;">${deal.promoBadge}</span>
+                        <span style="display:inline-block;background:${badgeBg};color:${badgeColor};font-size:14px;font-weight:600;padding:5px 14px;border-radius:10px;letter-spacing:1px;margin-left:12px;">${
+          deal.promoBadge
+        }</span>
                       </span>
                     </div>
-                    <span style="font-size:19px;color:${priceColor};font-weight:700;font-family:Arial,sans-serif;">MX$${deal.price}</span>
+                    <span style="font-size:19px;color:${priceColor};font-weight:700;font-family:Arial,sans-serif;">MX$${
+          deal.price
+        }</span>
                   </div>
-                  ${includes.length > 1 ? `
+                  ${
+                    includes.length > 1
+                      ? `
                   <div style="margin-bottom:16px;">
                     <span style="font-size:16px;color:${descColor};font-family:Arial,sans-serif;">Includes:</span>
                     <ul style="margin:8px 0 0 18px;padding:0;font-size:15px;color:${descColor};font-family:Arial,sans-serif;">
-                      ${includes.map((item: any) => `<li style='margin-bottom:4px;'>${item}</li>`).join('')}
+                      ${includes
+                        .map(
+                          (item: any) =>
+                            `<li style='margin-bottom:4px;'>${item}</li>`
+                        )
+                        .join("")}
                     </ul>
                   </div>
-                  ` : ''}
-                  <div style="font-size:15px;color:${descColor};font-family:Arial,sans-serif;line-height:1.5;">${deal.description}</div>
+                  `
+                      : ""
+                  }
+                  <div style="font-size:15px;color:${descColor};font-family:Arial,sans-serif;line-height:1.5;">${
+          deal.description
+        }</div>
                 </td>
               </tr>
             </table>
           </td>
         </tr>
       `;
-    }).join('');
+      })
+      .join("");
 
     return `
     <!DOCTYPE html>
@@ -161,14 +191,16 @@ export default function App() {
             <>
               <h1>Generate a competitive campaign</h1>
               <p className="page-description">
-                Generate promotional content based on competitor's promotions in your area
+                Generate promotional content based on competitor's promotions in
+                your area
               </p>
               {/*<button onClick={handleGenerateClick} >generate (fake) content</button>*/}
               <GenerateBtn
-                onSuccess={(data) => {
+                onSuccess={(data, runId) => {
                   const html = buildEmailTemplateFromDeals(data);
                   setEmailContent(html);
                   setShowPreview(true);
+                  setRunId(runId);
                   console.log({ data });
                 }}
               />
@@ -176,9 +208,31 @@ export default function App() {
           ) : (
             <div className="preview-content">
               <div className="preview-footer">
-                <button className="send-btn" onClick={() => { console.log(emailContent); }}>
+                <button
+                  className="send-btn"
+                  onClick={async () => {
+                    if (!runId) return;
+                    await fetch(
+                      "https://hook.relay.app/api/v1/playbook/cmgf75eoc00so0pkn79zp7ato/webhook/cmggofjh600013b6zt6acp3jy?runId=" +
+                        runId,
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          recipients: ["grace@spoonity.com"],
+                          deals: emailContent,
+                        }),
+                      }
+                    );
+                    console.log(emailContent);
+                  }}
+                >
                   send content
-                  <span style={{ display: "inline-flex", alignItems: "center" }}>
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
                     <svg
                       width="20"
                       height="20"
@@ -204,7 +258,16 @@ export default function App() {
                 </button>
               </div>
               <div className="preview-header">Preview email content</div>
-              <div style={{ border: '1px solid #ccc', padding: '1rem', background: '#fff', borderRadius: '8px', overflow: 'auto', minHeight: '400px' }}>
+              <div
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "1rem",
+                  background: "#fff",
+                  borderRadius: "8px",
+                  overflow: "auto",
+                  minHeight: "400px",
+                }}
+              >
                 <div dangerouslySetInnerHTML={{ __html: emailContent }} />
               </div>
             </div>
